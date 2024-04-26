@@ -1,0 +1,8 @@
+com\prueba\siuguaraniweb\resources\JakartaEE10Resource.class
+Controllers\UsuarioController.class
+Persistence\DAO\UsuarioDAO.class
+com\prueba\siuguaraniweb\JakartaRestConfiguration.class
+Persistence\DTO\UsuarioDTO.class
+Controllers\LoginController.class
+Persistence\Conexion.class
+Seguridad\Cifrador.class
