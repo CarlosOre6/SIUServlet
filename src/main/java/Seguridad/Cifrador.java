@@ -26,6 +26,9 @@ public class Cifrador {
     private static final String algoritmo="AES";
     private static final String transformacion = "AES/ECB/PKCS5Padding";
     
+    
+    
+    
     public static String cifrar(String texto, String claveSecreta) throws GeneralSecurityException {
         SecretKey clave = generarClaveSecreta(claveSecreta);
         Cipher cifrador = Cipher.getInstance(transformacion);
@@ -42,23 +45,7 @@ public class Cifrador {
     }
 
     
-    public static String obtenerClave() throws FileNotFoundException, IOException{
-        String filePath = "C:\\Users\\orell\\OneDrive\\Documentos\\NetBeansProjects\\SIUGuaraniWeb\\src\\main\\resources\\Claves"; // Cambia la ruta y el nombre del archivo según corresponda
-            
-            // Leer el contenido del archivo de texto
-            BufferedReader reader = new BufferedReader(new FileReader(new File(filePath)));
-            String linea;
-            StringBuilder contenido = new StringBuilder();
-            while ((linea = reader.readLine()) != null) {
-                contenido.append(linea);
-            }
-            reader.close();
-            
-            // Aquí tienes el contenido del archivo de texto
-            String clave = contenido.toString().trim();
-            return clave;
-            
-    }
+   
     
    
 }

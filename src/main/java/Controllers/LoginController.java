@@ -98,15 +98,22 @@ public class LoginController extends HttpServlet {
         if(usuarioDB != null){
                 try {
                     //Verifico password
-                    
+                    //Ver si se puede poner la clave en un archivo de texto y usarla desde ahi. 
                     String pwdCifrado =Cifrador.cifrar(p, "SIUGUARANI");
                     //
-                    String clav = Cifrador.obtenerClave();
-                    System.out.println(clav);
                     //
                     System.out.println(pwdCifrado);
                     if(usuarioDB.getPassword().equals(pwdCifrado)){
                         System.out.println("Ingreso correctamente");
+                        HttpSession sesion = request.getSession();
+                        String legajo = user.obtenerDocente(usuarioDB.getUsuario(), "Docente");
+                        
+                        System.out.println("legajo del usuaior es: " + legajo);
+                        sesion.setAttribute("legajoDocente", legajo);
+                        sesion.setAttribute("autenticado", true);
+                        //Si en 30 minutos no hace nada, se cierra la sesion. 
+                        sesion.setMaxInactiveInterval(1800);
+                        
                     } else {
                         System.out.println("Contraseña incorrecta");
                     }   } catch (GeneralSecurityException ex) {

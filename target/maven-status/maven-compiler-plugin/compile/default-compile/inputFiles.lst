@@ -1,8 +1,14 @@
 C:\Users\orell\OneDrive\Documentos\NetBeansProjects\SIUGuaraniWeb\src\main\java\com\prueba\siuguaraniweb\JakartaRestConfiguration.java
 C:\Users\orell\OneDrive\Documentos\NetBeansProjects\SIUGuaraniWeb\src\main\java\com\prueba\siuguaraniweb\resources\JakartaEE10Resource.java
+C:\Users\orell\OneDrive\Documentos\NetBeansProjects\SIUGuaraniWeb\src\main\java\Controllers\AlumnoController.java
 C:\Users\orell\OneDrive\Documentos\NetBeansProjects\SIUGuaraniWeb\src\main\java\Controllers\LoginController.java
-C:\Users\orell\OneDrive\Documentos\NetBeansProjects\SIUGuaraniWeb\src\main\java\Controllers\UsuarioController.java
+C:\Users\orell\OneDrive\Documentos\NetBeansProjects\SIUGuaraniWeb\src\main\java\Controllers\ProyectoInvestigacionController.java
 C:\Users\orell\OneDrive\Documentos\NetBeansProjects\SIUGuaraniWeb\src\main\java\Persistence\Conexion.java
+C:\Users\orell\OneDrive\Documentos\NetBeansProjects\SIUGuaraniWeb\src\main\java\Persistence\DAO\AlumnoDAO.java
+C:\Users\orell\OneDrive\Documentos\NetBeansProjects\SIUGuaraniWeb\src\main\java\Persistence\DAO\IntegranteProyectoDAO.java
 C:\Users\orell\OneDrive\Documentos\NetBeansProjects\SIUGuaraniWeb\src\main\java\Persistence\DAO\UsuarioDAO.java
+C:\Users\orell\OneDrive\Documentos\NetBeansProjects\SIUGuaraniWeb\src\main\java\Persistence\DTO\AlumnoDTO.java
+C:\Users\orell\OneDrive\Documentos\NetBeansProjects\SIUGuaraniWeb\src\main\java\Persistence\DTO\IntegranteProyectoDTO.java
+C:\Users\orell\OneDrive\Documentos\NetBeansProjects\SIUGuaraniWeb\src\main\java\Persistence\DTO\ProyectoInvestigacionDTO.java
 C:\Users\orell\OneDrive\Documentos\NetBeansProjects\SIUGuaraniWeb\src\main\java\Persistence\DTO\UsuarioDTO.java
 C:\Users\orell\OneDrive\Documentos\NetBeansProjects\SIUGuaraniWeb\src\main\java\Seguridad\Cifrador.java

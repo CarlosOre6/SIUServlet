@@ -4,19 +4,24 @@
  */
 package Controllers;
 
+import Persistence.DAO.AlumnoDAO;
+import Persistence.DTO.AlumnoDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+
 
 
 /**
  *
  * @author orell
  */
-public class UsuarioController extends HttpServlet {
+public class AlumnoController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +40,10 @@ public class UsuarioController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UsuarioController</title>");            
+            out.println("<title>Servlet AlumnoController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UsuarioController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AlumnoController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,10 +61,25 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               System.out.println("Este es el get");
+        
+        PrintWriter out = response.getWriter();
+        HttpSession sesion = request.getSession();
+          if (sesion.getAttribute("autenticado") == null) {
+            System.out.println("Ha ocurrido un error");
+                        out.println("<p>No ha iniciado sesion  </p>");
 
-      
+        } else {
+              AlumnoDAO alumnoDAO =  new AlumnoDAO();
+              ArrayList<AlumnoDTO> listadoAlumnos = alumnoDAO.buscarAlumnos();
+              for( AlumnoDTO alumno:listadoAlumnos){
+                  System.out.println(alumno.getNomAlumno());
+              }
+              
+          }
+        
+        
         processRequest(request, response);
+        
     }
 
     /**
@@ -73,7 +93,6 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("Este es el post");
         processRequest(request, response);
     }
 

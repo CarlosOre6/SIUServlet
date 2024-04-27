@@ -50,4 +50,35 @@ public class UsuarioDAO {
             return null;
         }
             }
+    
+    
+    public String obtenerDocente(String usuario, String rol){
+                Conexion conec = new Conexion();
+                String legajo="";
+            String sql = "SELECT * FROM cuentausuario where usuario = '"+usuario+"';";
+            String sql1 = "select legajoDoc from cuentausuario join docente where cuentausuario.usuario = '" +usuario + "' && " + "docente.usuario = '" + usuario   + "';" ;
+            ResultSet rs = null;
+            PreparedStatement ps = null;
+            UsuarioDTO usuarioBD = new UsuarioDTO();
+            
+        try {
+            ps = conec.getConnection().prepareStatement(sql1);
+            rs = ps.executeQuery();
+           while (rs.next())
+           {
+            legajo = rs.getString(1);
+           }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+
+        try{
+                ps.close();
+                rs.close();
+                conec.desconectar();
+            }catch(Exception ex){}
+            
+        }
+       return legajo;
+    }
 }
