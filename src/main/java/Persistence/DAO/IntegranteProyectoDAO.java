@@ -111,14 +111,6 @@ public class IntegranteProyectoDAO {
      
     public boolean incribir(IntegranteProyectoDTO vo, String tipo){
         
-           /**
-         * 1: Existente activo
-         * 0: exitente inactivo
-         * -1: inexistente
-         * 2: implica que se agrego
-         */
-        
-        
         Conexion conec = new Conexion();
         String sql_1 = "INSERT INTO alumno_investigacion (legajoEst, codProyecto, rol, fechaInscripcion, hsSemanales, descripAct, estadoRegistro) VALUES(?, ?, ?, ?, ?, ?, ?);";
         String sql_2 = "INSERT INTO docente_proyecto_investigacion (legajoDoc, codProyecto, rol, fechaInscripcion, hsSemanales, descripAct, estadoRegistro) VALUES(?, ?, ?, ?, ?, ?, ?);";
@@ -164,6 +156,30 @@ public class IntegranteProyectoDAO {
     }
     
     
+    
+    public boolean eliminarIntegrante(String legajo){
+            Conexion conec = new Conexion();
+            PreparedStatement ps = null;
+
+        try {
+            String sql1 = "update alumno_investigacion set estadoRegistro = 'inactivo' where legajoEst = '"+legajo+"';";
+            //Actualizamos el estado del alumno
+            ps = conec.getConnection().prepareStatement(sql1);
+          int filas=  ps.executeUpdate();
+          System.out.println("filas afectadas " + filas);
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(IntegranteProyectoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+  
+        finally{
+            try{
+                ps.close();
+                conec.desconectar();
+            }catch(Exception ex){}
+        }
+    }
     
     
 }

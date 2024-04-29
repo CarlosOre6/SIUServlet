@@ -4,6 +4,7 @@
  */
 package Controllers;
 
+import Persistence.Conexion;
 import Persistence.DAO.IntegranteProyectoDAO;
 import Persistence.DTO.IntegranteProyectoDTO;
 import Persistence.DTO.ProyectoInvestigacionDTO;
@@ -108,22 +109,21 @@ public class ProyectoInvestigacionController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Los parametros se pueden pasar en postman desde 
-        String parametro = request.getParameter("parametro");
-        String otroParametro = request.getParameter("body");
-        System.out.println(parametro + otroParametro);
+       
 // '104/2019', '1025', 'investigador', '18/11/2023', 5, 'Muchas', 'activo'
 
 IntegranteProyectoDTO integranteNuevo = new IntegranteProyectoDTO();
 
 //Lo siguiente se deberia obstener del formulario
-String legajo = "104/2019";
-String codigoProyecto ="1025";
-String rol="Investigador";
-String fecha="18/11/2023";
-int horasSemanales=5;
-String actividades = "Muchas";
-String estado="activo";
+
+
+String legajo = request.getParameter("legajo");
+String codigoProyecto =request.getParameter("codigoProyecto");
+String rol=request.getParameter("rol"); 
+String fecha=request.getParameter("fechaInscripcion");
+int horasSemanales=Integer.parseInt(request.getParameter("horasSemanales")); 
+String actividades = request.getParameter("actividades");
+String estado=request.getParameter("estado"); 
 integranteNuevo.setLegajoEst(legajo);
 integranteNuevo.setCodProyecto(codigoProyecto);
 integranteNuevo.setRol(rol);
@@ -131,7 +131,7 @@ integranteNuevo.setFechaInscripcion(fecha);
 integranteNuevo.setHsSemanales(horasSemanales);
 integranteNuevo.setDescripAct(actividades);
 integranteNuevo.setEstadoRegistro(estado);
-// hasta aqui se debe de obtener desde el formulario
+// hasta aqui se debe de obtener desde el formulario 
 IntegranteProyectoDAO proyectoDAO = new IntegranteProyectoDAO();
  boolean inscripto=  proyectoDAO.incribir(integranteNuevo,"alumno");
 if(inscripto){
@@ -161,9 +161,18 @@ if(inscripto){
 
         System.out.println("Esto es un put ");
     }
+    
+    
+    
+    
       @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        System.out.println("Esto es un delete ");
+//Eliminar integrante
+        String legajo = request.getParameter("legajoEliminar");
+        Conexion conec = new Conexion();
+       IntegranteProyectoDAO proyectoDAO = new IntegranteProyectoDAO();
+      boolean eliminado = proyectoDAO.eliminarIntegrante(legajo);
+        
+        System.out.println("Estado de eliminaicon" +eliminado);
     }
 }
